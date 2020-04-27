@@ -1,0 +1,19 @@
+<p>course-list works!</p>
+<ul class="course-list-items">
+    <li class="course-list-item" *ngFor="let item of courses; let i = index">
+        <p>
+            id: {{item.id}}
+        </p>
+        <p>
+            title: {{item.title}}
+        </p>
+        <p>
+            created: {{item.createdAtDate}}
+        </p>
+        <p>
+            duration: {{item.durationTime}}
+        </p>
+    </li>
+</ul>
+
+
