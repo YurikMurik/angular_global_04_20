@@ -1,0 +1,87 @@
+@import '../../../core/commons/variables';
+
+.course-list-item {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 20px;
+    border: 1px solid @color-gray;
+    background-color: @color-white;
+    border-radius: 6px;
+    box-shadow: 5px 5px 18px @color-gray2;
+    margin-bottom: 20px;
+
+    &-data {
+        width: 80%;
+        padding-right: 50px;
+        font-family: 'SourseSansPro Regular';
+            
+        &-header {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+    
+            &-info {
+                display: flex;
+                color: @color-gray2;
+    
+                p:first-child {
+                    margin-right: 20px;
+                }
+            }
+    
+            &-title {
+                display: flex;
+                a {
+                    font-size: 30px;
+                    text-decoration: none;
+                    text-transform: uppercase;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    
+        &-text {
+            line-height: 2;
+        }
+    }
+
+    &-actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20%;
+
+        button {
+            height: 25px;
+            width: 200px;
+            margin-right: 8px;
+            margin-left: 8px;
+            background-color: @color-blue;
+            color: @color-white;
+            border-radius: 3px;
+            border: none;
+            font-size: 12px;
+            font-family: 'SourseSansPro Semibold';
+            cursor: pointer;
+            outline: none;
+            &:hover {
+                background-color: @color-blue1;
+            }
+        }
+    }
+
+    &-loadmore {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        border: 1px solid @color-gray;
+        box-shadow: 5px 5px 18px @color-gray2;
+        background-color: @color-white;
+        border-radius: 6px;
+    }
+}

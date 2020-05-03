@@ -1,1 +1,10 @@
-<p>search works!</p>
+<div class="toolbox-search">
+    <fa-icon class="toolbox-search-icon" [icon]="faSearchIcon"></fa-icon>
+    <input 
+        [(ngModel)]="searchResult"
+        [ngModelOptions]="{standalone: true}"
+        type="text"
+        placeholder="Text to search"
+    >
+    <button (click)="searchCourses()"> Search </button>
+</div>

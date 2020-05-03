@@ -1,0 +1,48 @@
+@import "../../../core/commons/variables";
+
+.toolbox-search {
+    align-items: center;
+    display: flex;
+    position: relative;
+    width: 400px;
+
+    &-icon {
+        position: absolute;
+        left: 14px;
+        transform: scale(-1, 1);
+        color: @color-gray3;
+    }
+
+    input {
+        width: 80%;
+        height: 35px;
+        padding-left: 40px;
+        border: 1px solid @color-gray2;
+        border-radius: 3px;
+        outline: none;
+        background: @color-white;
+        color: @color-black;
+        margin-right: 10px;
+        font-family: 'SourseSansPro Semibold';
+        font-size: 14px;
+        &::placeholder {
+            color: @color-gray2;
+        }
+    }
+
+    button {
+        width: 100px;
+        height: 37px;
+        border: none;
+        background: @color-green;
+        color: @color-white;
+        border-radius: 3px;
+        font-family: 'SourseSansPro Semibold';
+        font-size: 14px;
+        cursor: pointer;
+        outline: none;
+        &:hover {
+            background: @color-green1;
+        }
+    }
+}

@@ -7,6 +7,9 @@ import { CourseItemInfo } from 'src/app/core/models';
   styleUrls: ['./course-list.component.less']
 })
 export class CourseListComponent {
-
   @Input() public courses: CourseItemInfo[] = [];
+
+  public onDeleteCourse(id: number): void {
+    console.log(id);
+  }
 }

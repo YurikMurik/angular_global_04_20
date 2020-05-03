@@ -1,3 +1,5 @@
+import { IconDefinition, faPlus } from '@fortawesome/free-solid-svg-icons';
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './add-course.component.html',
   styleUrls: ['./add-course.component.less']
 })
-export class AddCourseComponent { }
+export class AddCourseComponent {
+  public addCourseIcon: IconDefinition = faPlus;
+}

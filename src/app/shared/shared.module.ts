@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderLoginComponent } from './header/header-login/header-login.component';
 import { HeaderLogoComponent } from './header/header-logo/header-logo.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HeaderLogoComponent } from './header/header-logo/header-logo.component'
     FooterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FontAwesomeModule
   ]
 })
 export class SharedModule { }

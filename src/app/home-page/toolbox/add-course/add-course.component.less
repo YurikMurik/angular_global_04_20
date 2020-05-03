@@ -1,0 +1,34 @@
+@import '../../../core/commons/variables';
+
+.add-course {
+    margin-top: 26px;
+    display: flex;
+    justify-content: flex-end;
+
+    &-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 138px;
+        height: 36px;
+        border: none;
+        background: @color-blue;
+        color: @color-white;
+        border-radius: 3px;
+        font-family: 'SourseSansPro Semibold';
+        font-size: 14px;
+        cursor: pointer;
+        outline: none;
+        &:hover {
+            background: @color-blue1
+        }
+
+        &-text {
+            padding-left: 10px;
+        }
+
+        &-icon {
+            font-size: 20px;
+        }
+    }
+}
