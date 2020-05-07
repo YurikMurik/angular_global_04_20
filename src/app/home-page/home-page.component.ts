@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { fakeVideoList } from '../core/mocks/mocked-data';
 import { CourseItemInfo } from '../core/models';
+import { HomePageService } from './home-page.service';
 
 @Component({
   selector: 'app-home-page',
@@ -11,7 +11,15 @@ export class HomePageComponent implements OnInit {
 
   public courses: CourseItemInfo[];
 
+  constructor(
+    private homePageService: HomePageService,
+  ) { }
+
   public ngOnInit(): void {
-    this.courses = fakeVideoList;
+    this.getCourses();
+  }
+
+  public getCourses(): void {
+    this.courses = this.homePageService.getCourses();
   }
 }

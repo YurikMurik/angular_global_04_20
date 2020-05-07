@@ -3,9 +3,10 @@ import { CourseItemInfo } from '../models';
 export const fakeVideoList: CourseItemInfo[] = [
     {
       id: 1,
-      title: 'video_1',
-      createdAtDate: new Date,
+      title: 'Video about Denmark',
+      createdAtDate: new Date(2019, 1, 1),
       durationTime: 120,
+      topRated: true,
       description:
        `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
         Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus
@@ -16,9 +17,10 @@ export const fakeVideoList: CourseItemInfo[] = [
     } ,
     {
       id: 2,
-      title: 'video_2',
+      title: 'Video about Canada',
       createdAtDate: new Date,
       durationTime: 180,
+      topRated: true,
       description:
       `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
         Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus
@@ -29,9 +31,10 @@ export const fakeVideoList: CourseItemInfo[] = [
     },
     {
       id: 3,
-      title: 'video_3',
-      createdAtDate: new Date,
+      title: 'Video about Brazil',
+      createdAtDate: new Date(2021, 12, 14),
       durationTime: 180,
+      topRated: false,
       description:
       `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
         Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus
@@ -42,9 +45,10 @@ export const fakeVideoList: CourseItemInfo[] = [
     },
     {
       id: 4,
-      title: 'video_4',
-      createdAtDate: new Date,
+      title: 'Video about Australia',
+      createdAtDate: new Date(2020, 10, 20),
       durationTime: 132,
+      topRated: false,
       description:
       `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
         Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus
@@ -55,9 +59,10 @@ export const fakeVideoList: CourseItemInfo[] = [
     },
     {
       id: 5,
-      title: 'video_5',
-      createdAtDate: new Date,
+      title: 'Video about Russia',
+      createdAtDate: new Date(2014, 1, 1),
       durationTime: 120,
+      topRated: true,
       description:
       `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
         Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus
