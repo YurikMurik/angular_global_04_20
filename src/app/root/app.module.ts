@@ -7,6 +7,7 @@ import { CoreModule } from '../core/core.module';
 import { LoginPageModule } from '../login-page/login-page.module';
 import { HomePageModule } from '../home-page/home-page.module';
 import { SharedModule } from '../shared/shared.module';
+import { CoursePageModule } from '../course-page/course-page.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    CoursePageModule,
     LoginPageModule,
     HomePageModule
   ],

@@ -1,0 +1,39 @@
+<li class="course-list-item">
+    <div class="course-list-item-data">
+        <div class="course-list-item-data-header">
+            
+            <div class="course-list-item-data-header-title">
+                <a href='course-page'>
+                  title: {{item.title}}
+                </a>
+            </div>
+    
+            <div class="course-list-item-data-header-info">
+                <p>
+                    <fa-icon [icon]="clockButtonIcon"></fa-icon>
+                    {{item.durationTime | transformMinutesToHours}} 
+                </p>
+                <p>
+                    <fa-icon [icon]="calendarButtonIcon"></fa-icon> 
+                    {{item.createdAtDate | date}}
+                </p>
+            </div>
+            
+        </div>
+    
+        <div class="course-list-item-data-text">
+            {{item.description}}
+        </div>
+    </div>
+    
+    <div class="course-list-item-actions">
+        <button> 
+            <fa-icon [icon]="editButtonIcon"></fa-icon> 
+            Edit
+        </button>
+        <button (click)="onDeleteCourseEmit(item.id)">
+            <fa-icon  [icon]="trashButtonIcon"></fa-icon> 
+            Delete 
+        </button>
+    </div>
+</li>

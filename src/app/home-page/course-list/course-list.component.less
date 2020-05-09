@@ -1,8 +1,18 @@
-.course-list-items {
+@import '../../core/commons/variables';
+
+.course-list {
     list-style-type: none;
     padding-inline-start: 0;
-    .course-list-item {
-        padding: 20px;
-        border: 1px solid gray;
+
+    &-item-loadmore {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        border: 1px solid @color-gray;
+        box-shadow: 5px 5px 18px @color-gray2;
+        background-color: @color-white;
+        border-radius: 6px;
     }
 }

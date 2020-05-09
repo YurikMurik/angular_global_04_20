@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="137px" height="32px" viewBox="0 0 137 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>01122ACF-56F9-4DD4-9C1B-786368FB40D1</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#76CDD8" offset="0%"></stop>
+            <stop stop-color="#E2F86A" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="6-List-course" transform="translate(-85.000000, -16.000000)">
+            <g id="Top_block">
+                <g id="Logo" transform="translate(85.000000, 0.000000)">
+                    <text id="Video-Course" font-family="Oswald-Medium, Oswald" font-size="16" font-weight="400" letter-spacing="0.2533333" fill="#FFFFFF">
+                        <tspan x="40" y="40">VIDEO COURSE</tspan>
+                    </text>
+                    <g id="Group-5" transform="translate(0.000000, 16.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+                        <path d="M16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 Z M16,30 C23.7319865,30 30,23.7319865 30,16 C30,8.2680135 23.7319865,2 16,2 C8.2680135,2 2,8.2680135 2,16 C2,23.7319865 8.2680135,30 16,30 Z M22.7519246,16.8320503 L13.5547002,22.9635332 C13.0951715,23.2698857 12.4743022,23.1457118 12.1679497,22.6861831 C12.058438,22.5219156 12,22.3289079 12,22.1314829 L12,9.86851709 C12,9.31623234 12.4477153,8.86851709 13,8.86851709 C13.197425,8.86851709 13.3904327,8.92695512 13.5547002,9.0364668 L22.7519246,15.1679497 C23.2114532,15.4743022 23.3356271,16.0951715 23.0292747,16.5547002 C22.9560398,16.6645525 22.8617768,16.7588154 22.7519246,16.8320503 Z" id="Combined-Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
