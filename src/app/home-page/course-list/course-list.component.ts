@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CourseItemInfo } from 'src/app/core/models';
+import { HomePageService } from '../../core/services/home-page.service';
 
 @Component({
   selector: 'app-course-list',
@@ -9,7 +10,9 @@ import { CourseItemInfo } from 'src/app/core/models';
 export class CourseListComponent {
   @Input() public courses: CourseItemInfo[] = [];
 
+  constructor (private homePageService: HomePageService) {}
+
   public onDeleteCourse(id: number): void {
-    console.log(id);
+    this.homePageService.deleteCourseById(id);
   }
 }

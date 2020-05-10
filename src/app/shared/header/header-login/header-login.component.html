@@ -1,21 +1,40 @@
-<div class="header-login">
-    <div class="header-login-username">
+<div *ngIf="isAuthentificated" class="header-login-auth">
+    <div class="header-login-auth-username">
         <span>
             <fa-icon [icon]="faUserIcon"></fa-icon>
         </span>
         
         <span>
-            User name
+            {{userInfo.login}}
         </span>    
     </div>
     
-    <a href="#" class="header-login-logoff">
+    <a 
+        [routerLink]="['/login']"
+        routerLinkActive="active"
+        class="header-login-auth-logout"
+    >
         <span>
             <fa-icon [icon]="faUserLogout"></fa-icon>
         </span>
         
-        <span>
+        <span (click)="userLogOut()">
             Log off
         </span>    
     </a>
 </div>
+
+<a
+    *ngIf="!isAuthentificated"
+    class="header-login-non-auth"
+    [routerLink]="['/login']"
+    routerLinkActive="active"
+>
+    <span>
+        <fa-icon [icon]="faUserLogin"></fa-icon>
+    </span>
+    
+    <span>
+        Login
+    </span>    
+</a>

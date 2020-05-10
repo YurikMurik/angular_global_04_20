@@ -16,8 +16,16 @@ export class OrderByTitleNamePipe implements PipeTransform {
         if (!Array.isArray(array)) {
             return;
         }
-        return array.sort((one, two) => {
-            return one.title < two.title ? -1 : 1;
+
+        return array.sort((currentElem: CourseItemInfo, nextElem: CourseItemInfo) => {
+            if (currentElem.title < nextElem.title) {
+                return -1;
+            }
+
+            if (currentElem.title > nextElem.title) {
+                return 1;
+            }
+            return 0;
         });
     }
 }

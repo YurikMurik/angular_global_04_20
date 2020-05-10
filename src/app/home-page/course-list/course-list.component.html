@@ -3,7 +3,6 @@
         (onDeleteCourse)="onDeleteCourse($event)"
         *ngFor="let item of courses | orderByDateCreation"
         [item]="item"
-        [routerLink]="['/courses', item.id]"
     >
     </app-course-item>
 

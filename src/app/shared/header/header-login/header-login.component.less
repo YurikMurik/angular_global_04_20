@@ -1,20 +1,40 @@
 @import "../../../../assets/less/modules/variables";
 
 .header-login {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    font-family: 'SourseSansPro Regular';
-    color: @color-white;
-    font-size: 14px;
+    &-auth {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        font-family: 'SourseSansPro Regular';
+        color: @color-white;
+        font-size: 14px;
 
-    &-username {
-        margin-right: 20px;
+        &-username {
+            margin-right: 20px;
+        }
+
+        &-logout {
+            text-decoration: none;
+            color: @color-white;
+            &:hover {
+                color: @color-gray1;
+            }
+        }
     }
 
-    &-logoff {
-        text-decoration: none;
+    &-non-auth {
+        display: flex;
+        align-items: center;
+        height: 100%;
         color: @color-white;
+        font-size: 14px;
+        font-family: 'SourseSansPro Regular';
+        text-decoration: none;
+
+        span:first-child {
+            margin-right: 5px;
+        }
+
         &:hover {
             color: @color-gray1;
         }

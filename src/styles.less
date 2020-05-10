@@ -1,10 +1,27 @@
 @import "assets/less/modules/_fonts.less";
+@import "../src/assets/less/modules/variables";
 
 html, body {
     margin: 0;
     height: 100%;
 }
 
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 .container {
     padding: 0 60px;
+}
+
+mat-dialog-container#modal-component {
+    border-radius: 11px;
+    background-color: @color-black;
+}
+
+mat-card-header {
+
+    .mat-card-header-text {
+        margin-left: 0;
+    }
 }

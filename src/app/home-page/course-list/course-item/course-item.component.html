@@ -7,7 +7,10 @@
     <div class="course-list-item-data">
         <div class="course-list-item-data-header">
             <div class="course-list-item-data-header-title">
-                <a routerLink = "/course-page" routerLinkActive="active">
+                <a 
+                    [routerLink]="['/courses', item.id]"
+                    routerLinkActive="active"
+                >
                   title: {{item.title | uppercase}}
                 </a>
                 <span [ngClass]="{
@@ -43,7 +46,7 @@
             <fa-icon [icon]="editButtonIcon"></fa-icon> 
             Edit
         </button>
-        <button (click)="onDeleteCourseEmit(item.id)">
+        <button (click)="onDeleteCourseEmit(item.id, item.title)">
             <fa-icon  [icon]="trashButtonIcon"></fa-icon> 
             Delete 
         </button>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseItemInfo } from '../core/models';
-import { HomePageService } from './home-page.service';
+import { HomePageService } from '../core/services/home-page.service';
 
 @Component({
   selector: 'app-home-page',
@@ -11,9 +11,13 @@ export class HomePageComponent implements OnInit {
 
   public courses: CourseItemInfo[];
 
-  constructor(
-    private homePageService: HomePageService,
-  ) { }
+  constructor(private homePageService: HomePageService) {
+    homePageService.courseList$.subscribe(
+      courseList => {
+        this.courses = courseList;
+      }
+    );
+  }
 
   public ngOnInit(): void {
     this.courses = this.getCourses();
