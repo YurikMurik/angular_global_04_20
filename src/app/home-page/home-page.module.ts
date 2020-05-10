@@ -12,6 +12,7 @@ import { TransformMinutesToHoursPipe } from '../core/pipes/transform-minutes.pip
 import { ChangeBorderColorDirective } from '../core/directives/change-border-color.directive';
 import { OrderByDateCreationPipe } from '../core/pipes/orderByDateCreation.pipe';
 import { OrderByTitleNamePipe } from '../core/pipes/orderByTitleName.pipe';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,13 +25,14 @@ import { OrderByTitleNamePipe } from '../core/pipes/orderByTitleName.pipe';
     TransformMinutesToHoursPipe,
     OrderByDateCreationPipe,
     OrderByTitleNamePipe,
-    ChangeBorderColorDirective
+    ChangeBorderColorDirective,
   ],
   exports: [HomePageComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [
     DatePipe,

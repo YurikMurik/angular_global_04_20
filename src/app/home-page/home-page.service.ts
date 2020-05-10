@@ -7,15 +7,14 @@ import { OrderByTitleNamePipe } from '../core/pipes/orderByTitleName.pipe';
   providedIn: 'root'
 })
 export class HomePageService {
-  private coursesList: CourseItemInfo[] = fakeVideoList;
-
   constructor(private orderByTitleNamePipe: OrderByTitleNamePipe) { }
 
   public getCourses(): CourseItemInfo[] {
-    return this.coursesList;
+    const coursesList: CourseItemInfo[] = fakeVideoList;
+    return coursesList;
   }
 
   public sendMessageSortByName(): void {
-    this.orderByTitleNamePipe.transform(this.coursesList);
+    this.orderByTitleNamePipe.transform(fakeVideoList);
   }
 }

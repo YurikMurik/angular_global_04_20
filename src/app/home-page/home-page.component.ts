@@ -16,10 +16,10 @@ export class HomePageComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.getCourses();
+    this.courses = this.getCourses();
   }
 
-  public getCourses(): void {
-    this.courses = this.homePageService.getCourses();
+  public getCourses(): CourseItemInfo[] {
+    return this.homePageService.getCourses();
   }
 }

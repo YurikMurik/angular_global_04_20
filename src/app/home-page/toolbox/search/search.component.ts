@@ -15,6 +15,5 @@ export class SearchComponent {
 
   public searchCourses(): void {
     this.homePageService.sendMessageSortByName();
-    console.log(this.searchResult);
   }
 }

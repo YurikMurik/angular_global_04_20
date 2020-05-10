@@ -1,9 +1,7 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 const DAYS_IN_MILLISEC: number = 1.21e+9;
-const GREEN_COLOR: string = '#90EE90';
-const BLUE_COLOR: string = '#87CEFA';
 
 @Directive({
   selector: '[appChangeBorderColor]'
@@ -11,7 +9,10 @@ const BLUE_COLOR: string = '#87CEFA';
 
 export class ChangeBorderColorDirective implements OnInit {
     @Input() private createdAtDate: string;
-    constructor(private el: ElementRef, public datepipe: DatePipe) { }
+    constructor (
+        private el: ElementRef,
+        private renderer: Renderer2,
+        public datepipe: DatePipe) { }
 
     public ngOnInit(): void {
         this.setColor(this.createdAtDate);
@@ -23,11 +24,11 @@ export class ChangeBorderColorDirective implements OnInit {
         const dateDiff: boolean = currentDate.getTime() - createdAtDateTransform.getTime() > DAYS_IN_MILLISEC;
 
         if (createdAtDateTransform < currentDate && dateDiff) {
-            this.el.nativeElement.style.borderColor = GREEN_COLOR;
+            this.renderer.addClass(this.el.nativeElement, 'border--color-green');
         }
 
         if (createdAtDateTransform > currentDate) {
-            this.el.nativeElement.style.borderColor = BLUE_COLOR;
+            this.renderer.addClass(this.el.nativeElement, 'border--color-blue');
         }
     }
 }
