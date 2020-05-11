@@ -1,12 +1,14 @@
-<ul class="course-list" >
+<ul class="course-list">
     <app-course-item 
         (onDeleteCourse)="onDeleteCourse($event)"
-        *ngFor="let item of courses"
+        *ngFor="let item of courses | orderByDateCreation"
         [item]="item"
         [routerLink]="['/courses', item.id]"
     >
     </app-course-item>
-    <div class="course-list-item-loadmore">
-        <a href="#"> LOAD MORE </a>
+
+    <div class="course-list-item-message">
+        <a *ngIf="courses && courses.length" href="#"> LOAD MORE </a>
+        <p *ngIf="!courses || !courses.length"> NO DATA. FEEL FREE TO ADD NEW COURSE </p>
     </div>
 </ul>

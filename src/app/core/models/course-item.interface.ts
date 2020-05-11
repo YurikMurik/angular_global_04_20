@@ -5,4 +5,5 @@ export interface CourseItemInfo {
     createdAtDate: Date;
     durationTime: number;
     description: string;
+    topRated: boolean;
 }

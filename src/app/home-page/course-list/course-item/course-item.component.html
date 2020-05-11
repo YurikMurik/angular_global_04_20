@@ -1,13 +1,25 @@
-<li class="course-list-item">
+<li class="course-list-item" 
+    appChangeBorderColor [createdAtDate]="item.createdAtDate"
+    [ngClass]="{
+        'course-list-item--changed-background': item.topRated
+    }"
+>
     <div class="course-list-item-data">
         <div class="course-list-item-data-header">
-            
             <div class="course-list-item-data-header-title">
-                <a href='course-page'>
-                  title: {{item.title}}
+                <a routerLink = "/course-page" routerLinkActive="active">
+                  title: {{item.title | uppercase}}
                 </a>
+                <span [ngClass]="{
+                    'course-list-item-top-rated--display-none': !item.topRated,
+                    'course-list-item-top-rated': item.topRated
+                }">
+                    <fa-icon
+                        [icon]="topRatedIcon"
+                        class="course-list-item-top-rated-icon">
+                    </fa-icon> 
+                </span>
             </div>
-    
             <div class="course-list-item-data-header-info">
                 <p>
                     <fa-icon [icon]="clockButtonIcon"></fa-icon>

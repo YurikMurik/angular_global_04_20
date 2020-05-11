@@ -1,14 +1,30 @@
-@import '../../../core/commons/variables';
+@import '../../../../assets/less/modules/variables';
 
 .course-list-item {
     display: flex;
     flex-wrap: nowrap;
     padding: 20px;
-    border: 1px solid @color-gray;
+    border: 2px solid @color-gray;
     background-color: @color-white;
     border-radius: 6px;
     box-shadow: 5px 5px 18px @color-gray2;
     margin-bottom: 20px;
+
+    &--changed-background {
+        background-color: @color-yellow1;
+    }
+
+    &-top-rated {
+        display: block;
+        
+        &-icon {
+            color: @color-yellow;
+        }
+
+        &--display-none {
+            display: none;
+        }
+    }
 
     &-data {
         width: 80%;
@@ -31,14 +47,13 @@
     
             &-title {
                 display: flex;
+                align-items: center;
                 a {
                     font-size: 30px;
                     text-decoration: none;
-                    text-transform: uppercase;
-
-                    &:hover {
-                        text-decoration: underline;
-                    }
+                }
+                .course-list-item-top-rated {
+                    font-size: 30px;
                 }
             }
         }
@@ -72,16 +87,14 @@
             }
         }
     }
+}
 
-    &-loadmore {
-        margin-top: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50px;
-        border: 1px solid @color-gray;
-        box-shadow: 5px 5px 18px @color-gray2;
-        background-color: @color-white;
-        border-radius: 6px;
+.border {
+    &--color-green {
+        border-color: @color-green2; 
+    }
+
+    &--color-blue {
+        border-color: @color-blue2;
     }
 }

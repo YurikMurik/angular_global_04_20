@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IconDefinition, faEdit, faTrash, faClock, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faEdit, faTrash, faClock, faCalendar, faStar } from '@fortawesome/free-solid-svg-icons';
 import { CourseItemInfo } from 'src/app/core/models';
 import { Router } from '@angular/router';
 
@@ -17,6 +17,7 @@ export class CourseItemComponent {
   public trashButtonIcon: IconDefinition = faTrash;
   public clockButtonIcon: IconDefinition = faClock;
   public calendarButtonIcon: IconDefinition = faCalendar;
+  public topRatedIcon: IconDefinition = faStar;
 
   public onDeleteCourseEmit(id: number): void {
     return this.onDeleteCourse.emit(id);
