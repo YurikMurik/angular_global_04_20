@@ -1,8 +1,10 @@
 <app-header [currentRouteUrl]="route"> </app-header>
 <div class="wrapper">
-        <div *ngIf="route !== '/login'" class="breadcrumbs container">
-                Courses
-        </div>  
+        <app-breadcrumb
+                *ngIf="route !== '/login'"
+                class="breadcrumbs container"
+                [currentRouteUrl]="route"
+        ></app-breadcrumb>
         <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>

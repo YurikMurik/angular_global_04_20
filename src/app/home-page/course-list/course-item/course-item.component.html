@@ -7,12 +7,8 @@
     <div class="course-list-item-data">
         <div class="course-list-item-data-header">
             <div class="course-list-item-data-header-title">
-                <a 
-                    [routerLink]="['/courses', item.id]"
-                    routerLinkActive="active"
-                >
-                  title: {{item.title | uppercase}}
-                </a>
+                <span class="course-list-item-data-header-title-text">
+                    title: {{item.title | uppercase}} </span>
                 <span [ngClass]="{
                     'course-list-item-top-rated--display-none': !item.topRated,
                     'course-list-item-top-rated': item.topRated
@@ -42,7 +38,7 @@
     </div>
     
     <div class="course-list-item-actions">
-        <button> 
+        <button (click)="isEditedCourse(item.id)"> 
             <fa-icon [icon]="editButtonIcon"></fa-icon> 
             Edit
         </button>

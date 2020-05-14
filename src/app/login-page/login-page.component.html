@@ -4,42 +4,30 @@
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div class="mat-card-content-message" *ngIf="isAuthentificated">
-        You successfully logged on the site!
-        <a [routerLink] = "['']"> go to Homepage </a>
+      <div class="login-page-form">
+        <mat-form-field class="login-page-full-width">
+          <input 
+            matInput 
+            placeholder="Username"
+            [(ngModel)]="username"
+            name="username"
+            required
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Password"
+            [(ngModel)]="password"
+            type="password"
+            name="password"
+            required
+          >
+        </mat-form-field>
       </div>
-      <form  *ngIf="!isAuthentificated">
-        <table cellspacing="0">
-          <tr>
-            <td>
-              <mat-form-field>
-                <input 
-                    matInput 
-                    placeholder="Username"
-                    [(ngModel)]="username"
-                    name="username"
-                    required
-                >
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-          <td><mat-form-field>
-            <input
-                matInput
-                placeholder="Password"
-                [(ngModel)]="password"
-                type="password"
-                name="password"
-                required
-            >
-          </mat-form-field></td>
-        </tr></table>
-      </form>
     </mat-card-content>
     <mat-card-actions>
       <button
-        *ngIf="!isAuthentificated" 
         mat-raised-button (click)="loginUser()"
         color="primary"
       >

@@ -8,21 +8,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatCardModule,
-        MatInputModule,
-        MatDialogModule,
-        MatTableModule,
-        MatMenuModule,
-        MatIconModule,
-        MatProgressSpinnerModule
-    ],
+    imports: [ CommonModule ],
     exports: [
         CommonModule,
         MatToolbarModule,
@@ -33,7 +23,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatTableModule,
         MatMenuModule,
         MatIconModule,
-        MatProgressSpinnerModule
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRippleModule
     ],
   })
 export class CustomMaterialModule { }

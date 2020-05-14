@@ -1,0 +1,75 @@
+<div class="login-wrapper">  
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>New course</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="add-course-form">
+          <mat-form-field class="add-course-form-title">
+            <mat-label>Title</mat-label>
+            <input 
+                matInput 
+                placeholder="Text input"
+                [(ngModel)]="title"
+                name="username"
+                required
+            >
+          </mat-form-field>
+          <mat-form-field class="add-course-form-description">
+            <mat-label>Description</mat-label>
+              <textarea
+                  matInput
+                  placeholder="Description"
+                  [(ngModel)]="description"
+                  name="description"
+                  required
+              ></textarea>
+          </mat-form-field>
+          <mat-form-field class="add-course-form-date">
+            <mat-label>Duration: </mat-label>
+              <input
+                  matInput
+                  placeholder="minutes"
+                  [(ngModel)]="duration"
+                  name="duration"
+                  required
+              >
+          </mat-form-field>
+          <mat-form-field class="add-course-form-date">
+            <mat-label>Date: </mat-label>
+            <input matInput [matDatepicker]="datapicker">
+            <mat-datepicker-toggle matSuffix [for]="datapicker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #datapicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="add-course-form-authors">
+            <mat-label>Authors: </mat-label>
+            <input
+              matInput
+              placeholder="Start typing"
+              [(ngModel)]="authors"
+              name="authors"
+              required
+            >
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          class="add-course-form-button-cancel"
+          (click)="cancelClick()"
+        >
+          Cancel
+        </button>
+        <button
+          mat-raised-button
+          class="add-course-form-button-save"
+          (click)="addNewCourse()"
+        >
+          Save
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
