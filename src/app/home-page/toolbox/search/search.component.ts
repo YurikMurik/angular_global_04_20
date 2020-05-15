@@ -15,8 +15,6 @@ export class SearchComponent {
   constructor (private homePageService: HomePageService) {}
 
   public searchCourses(): void {
-    this.homePageService.sortListByName()
-    .pipe(switchMap(() => this.homePageService.getCourses()))
-    .subscribe(data => this.homePageService.refreshData(data));
+    this.homePageService.sortListByName();
   }
 }

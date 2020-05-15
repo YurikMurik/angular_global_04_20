@@ -17,10 +17,14 @@ export class HeaderComponent implements OnInit {
     this.authService.isAuthentificated().subscribe((data: boolean) => {
       this.authentification = data;
     });
+  }
 
-    this.authService.getRefreshedData().subscribe(
-      data => this.authentification = data
-    );
+  public ngDoCheck(): void {
+    this.authService.isAuthentificated().subscribe((data: boolean) => {
+      if (this.authentification !== data) {
+        this.authentification = data;
+      }
+    });
   }
 
   public checkingLoginRouter(): boolean {
@@ -29,9 +33,5 @@ export class HeaderComponent implements OnInit {
 
   public userLogout(): void {
     this.authService.userLogout();
-  }
-
-  public isAuthentificated(): boolean {
-    return this.authentification;
   }
 }

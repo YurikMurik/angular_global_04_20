@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/services/auth.service';
 import { UserInfo } from '../core/models';
-import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -21,18 +20,14 @@ export class LoginPageComponent implements OnInit {
     this.authService.isAuthentificated().subscribe((data: boolean) => {
       this.authentification = data;
     });
-
-    this.authService.getRefreshedData().subscribe(
-      data => this.authentification = data
-    );
   }
 
   public loginUser(): void {
-    const isLogged: Observable<UserInfo> = this.authService.userLogin(this.username, this.password);
+    const isLogged: UserInfo = this.authService.userLogin(this.username, this.password);
     if (isLogged) {
-      isLogged
-      .pipe(switchMap(() => this.authService.isAuthentificated()))
-      .subscribe(data => this.authService.refreshData(data));
+      this.authService.isAuthentificated().subscribe((data: boolean) => {
+        this.authentification = data;
+      });
     } else {
       return undefined;
     }

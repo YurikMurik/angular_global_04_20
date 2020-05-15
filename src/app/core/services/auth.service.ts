@@ -1,32 +1,23 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { fakeUserInfo } from '../mocks/mocked-user';
 import { UserInfo } from '../models';
-import { Subject, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private userInfo: UserInfo;
-  private userInfoSource: Subject<boolean> = new Subject();
 
   constructor() {
     this.userInfo = fakeUserInfo;
-  }
-
-  public refreshData(data: boolean): void {
-    this.userInfoSource.next(data);
-  }
-
-  public getRefreshedData(): Observable<boolean> {
-    return this.userInfoSource.asObservable();
   }
 
   public getUserInfo(): UserInfo {
     return this.userInfo;
   }
 
-  public userLogin(sentLogin: string, sentPassword: string): Observable<UserInfo> {
+  public userLogin(sentLogin: string, sentPassword: string): UserInfo {
     const {
       login,
       password,
@@ -37,7 +28,7 @@ export class AuthService {
 
     if (sentLogin === login && sentPassword === password) {
       localStorage.setItem('userData', JSON.stringify({ firstName, lastName, token }));
-      return of(this.userInfo);
+      return this.userInfo;
     }
   }
 

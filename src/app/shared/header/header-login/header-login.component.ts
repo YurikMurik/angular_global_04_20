@@ -25,8 +25,8 @@ export class HeaderLoginComponent implements OnInit {
   }
 
   public userLogOut(): void {
-    this.authService.userLogout()
-    .pipe(switchMap(() => this.authService.isAuthentificated()))
-    .subscribe(data => this.authService.refreshData(data));
+    this.authService.userLogout().subscribe(data => {
+      this.isAuthentificated = data;
+    });
   }
 }

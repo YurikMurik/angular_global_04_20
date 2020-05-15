@@ -5,26 +5,17 @@ import { HomePageService } from '../core/services/home-page.service';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.less']
+  styleUrls: ['./home-page.component.less'],
 })
 export class HomePageComponent {
 
   public courses: CourseItemInfo[];
 
-  constructor(private homePageService: HomePageService) {
-    this.courses = [];
-  }
+  constructor (private homePageService: HomePageService) { }
 
   public ngOnInit(): void {
     this.homePageService.getCourses().subscribe(
-      courseList => this.courses = courseList
-    );
-    this.homePageService.getRefreshedData().subscribe(
-      courseList => this.courses = courseList
+      data => this.courses = data
     );
   }
-
-  /* public getCourses(): CourseItemInfo[] {
-    return this.homePageService.getCourses();
-  } */
 }
