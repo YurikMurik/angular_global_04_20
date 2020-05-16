@@ -1,45 +1,53 @@
 import { Injectable, OnInit } from '@angular/core';
 import { fakeUserInfo } from '../mocks/mocked-user';
 import { UserInfo } from '../models';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private _userInfoSource: Subject<string> = new Subject();
-  public userInfo$: Observable<string> = this._userInfoSource.asObservable();
+  private userInfo: UserInfo;
+  private userInfoSource: Subject<boolean> = new Subject();
 
-  public getUserInfo(): UserInfo {
-    const userInfo: UserInfo = fakeUserInfo;
-    return userInfo;
+  constructor() {
+    this.userInfo = fakeUserInfo;
   }
 
-  public userLogin(sentLogin: string, sentPassword: string): UserInfo {
-    const userInfo: UserInfo = this.getUserInfo();
+  public refreshData(data: boolean): void {
+    this.userInfoSource.next(data);
+  }
+
+  public getRefreshedData(): Observable<boolean> {
+    return this.userInfoSource.asObservable();
+  }
+
+  public getUserInfo(): UserInfo {
+    return this.userInfo;
+  }
+
+  public userLogin(sentLogin: string, sentPassword: string): Observable<UserInfo> {
     const {
       login,
       password,
       firstName,
       lastName,
       token
-    } = userInfo;
+    } = this.userInfo;
 
     if (sentLogin === login && sentPassword === password) {
       localStorage.setItem('userData', JSON.stringify({ firstName, lastName, token }));
-      this._userInfoSource.next('changed');
-      return userInfo;
+      return of(this.userInfo);
     }
   }
 
-  public userLogout(): boolean {
+  public userLogout(): Observable<boolean> {
     localStorage.removeItem('userData');
-    this._userInfoSource.next('changed');
     return this.isAuthentificated();
   }
 
-  public isAuthentificated(): boolean {
+  public isAuthentificated(): Observable<boolean> {
     const userDataFromLS: UserInfo = JSON.parse(localStorage.getItem('userData'));
-    return userDataFromLS && !!userDataFromLS.token;
+    return of(userDataFromLS && !!userDataFromLS.token);
   }
 }

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IconDefinition, faUser, faArrowRight, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserInfo } from 'src/app/core/models/user-info.interface';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header-login',
@@ -24,6 +25,8 @@ export class HeaderLoginComponent implements OnInit {
   }
 
   public userLogOut(): void {
-    this.isAuthentificated = this.authService.userLogout();
+    this.authService.userLogout()
+    .pipe(switchMap(() => this.authService.isAuthentificated()))
+    .subscribe(data => this.authService.refreshData(data));
   }
 }

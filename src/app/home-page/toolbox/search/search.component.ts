@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IconDefinition, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { HomePageService } from '../../../core/services/home-page.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -14,6 +15,8 @@ export class SearchComponent {
   constructor (private homePageService: HomePageService) {}
 
   public searchCourses(): void {
-    this.homePageService.sortListByName();
+    this.homePageService.sortListByName()
+    .pipe(switchMap(() => this.homePageService.getCourses()))
+    .subscribe(data => this.homePageService.refreshData(data));
   }
 }

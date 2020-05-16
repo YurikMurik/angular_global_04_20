@@ -7,23 +7,24 @@ import { HomePageService } from '../core/services/home-page.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.less']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent {
 
   public courses: CourseItemInfo[];
 
   constructor(private homePageService: HomePageService) {
-    homePageService.courseList$.subscribe(
-      courseList => {
-        this.courses = courseList;
-      }
-    );
+    this.courses = [];
   }
 
   public ngOnInit(): void {
-    this.courses = this.getCourses();
+    this.homePageService.getCourses().subscribe(
+      courseList => this.courses = courseList
+    );
+    this.homePageService.getRefreshedData().subscribe(
+      courseList => this.courses = courseList
+    );
   }
 
-  public getCourses(): CourseItemInfo[] {
+  /* public getCourses(): CourseItemInfo[] {
     return this.homePageService.getCourses();
-  }
+  } */
 }

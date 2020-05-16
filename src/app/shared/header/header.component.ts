@@ -14,9 +14,13 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   public ngOnInit(): void {
-    this.authService.userInfo$.subscribe((data: string) => {
-      this.authentification = this.isAuthentificated();
+    this.authService.isAuthentificated().subscribe((data: boolean) => {
+      this.authentification = data;
     });
+
+    this.authService.getRefreshedData().subscribe(
+      data => this.authentification = data
+    );
   }
 
   public checkingLoginRouter(): boolean {
@@ -28,6 +32,6 @@ export class HeaderComponent implements OnInit {
   }
 
   public isAuthentificated(): boolean {
-    return this.authService.isAuthentificated();
+    return this.authentification;
   }
 }

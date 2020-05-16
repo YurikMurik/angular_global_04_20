@@ -2,40 +2,37 @@ import { Injectable } from '@angular/core';
 import { fakeVideoList } from '../mocks/mocked-courses';
 import { CourseItemInfo } from '../models';
 import { OrderByTitleNamePipe } from '../pipes/orderByTitleName.pipe';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, of, Observer } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomePageService {
   private coursesList: CourseItemInfo[];
-  private _courseListSource: Subject<CourseItemInfo[]> = new Subject();
-  public courseList$: Observable<CourseItemInfo[]> = this._courseListSource.asObservable();
+  private courseListSource: Subject<CourseItemInfo[]> = new Subject();
 
   constructor(private orderByTitleNamePipe: OrderByTitleNamePipe) {
-    this.courseList$.subscribe((value) => {
-      this.coursesList = value;
-    });
+    this.coursesList = fakeVideoList;
   }
 
-  public getCourses(): CourseItemInfo[] {
-    const courseList: CourseItemInfo[] = fakeVideoList;
-    this._courseListSource.next(courseList);
-    return courseList;
+  public refreshData(data: CourseItemInfo[]): void {
+    this.courseListSource.next(data);
   }
 
-  public sortListByName(): void {
-    this._courseListSource.next(
-      this.orderByTitleNamePipe.transform(this.coursesList)
-    );
+  public getRefreshedData(): Observable<CourseItemInfo[]> {
+    return this.courseListSource.asObservable();
   }
 
-  public deleteCourseById(id: number): void {
-    const filteredArray: CourseItemInfo[] = this.coursesList.filter(item => item.id !== id);
-    this._courseListSource.next(filteredArray);
+  public getCourses(): Observable<CourseItemInfo[]> {
+    return of(this.coursesList);
   }
 
-  // TODO: it'll be implement in a next module
-  /* public createCourse() {};
-  public updateItem() {}; */
+  public sortListByName(): Observable<CourseItemInfo[]> {
+    return of(this.orderByTitleNamePipe.transform(this.coursesList));
+  }
+
+  public deleteCourseById(id: number): Observable<CourseItemInfo[]> {
+    const filteredList: CourseItemInfo[] = this.coursesList.filter(item => item.id !== id);
+    return of(this.coursesList = filteredList);
+  }
 }
