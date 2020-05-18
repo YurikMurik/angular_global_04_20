@@ -1,4 +1,6 @@
 <div class="header container">
     <app-header-logo></app-header-logo>
-    <app-header-login> </app-header-login>
+    <app-header-login 
+        *ngIf="checkingLoginRouter()"
+    > </app-header-login>
 </div>

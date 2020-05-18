@@ -10,8 +10,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CourseItemComponent } from './course-list/course-item/course-item.component';
 import { TransformMinutesToHoursPipe } from '../core/pipes/transform-minutes.pipe';
 import { ChangeBorderColorDirective } from '../core/directives/change-border-color.directive';
-import { OrderByDateCreationPipe } from '../core/pipes/orderByDateCreation.pipe';
-import { OrderByTitleNamePipe } from '../core/pipes/orderByTitleName.pipe';
+import { OrderByDateCreationPipe } from '../core/pipes/order-by-date-creation.pipe';
+import { OrderByTitleNamePipe } from '../core/pipes/order-by-title-name.pipe';
 import { RouterModule } from '@angular/router';
 
 @NgModule({

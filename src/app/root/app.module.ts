@@ -8,10 +8,14 @@ import { LoginPageModule } from '../login-page/login-page.module';
 import { HomePageModule } from '../home-page/home-page.module';
 import { SharedModule } from '../shared/shared.module';
 import { CoursePageModule } from '../course-page/course-page.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +24,10 @@ import { CoursePageModule } from '../course-page/course-page.module';
     SharedModule,
     CoursePageModule,
     LoginPageModule,
-    HomePageModule
+    HomePageModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

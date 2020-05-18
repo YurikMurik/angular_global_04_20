@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IconDefinition, faEdit, faTrash, faClock, faCalendar, faStar } from '@fortawesome/free-solid-svg-icons';
 import { CourseItemInfo } from 'src/app/core/models';
 import { Router } from '@angular/router';
+import { MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-course-item',
@@ -19,7 +21,25 @@ export class CourseItemComponent {
   public calendarButtonIcon: IconDefinition = faCalendar;
   public topRatedIcon: IconDefinition = faStar;
 
-  public onDeleteCourseEmit(id: number): void {
-    return this.onDeleteCourse.emit(id);
+  constructor(public matDialog: MatDialog) { }
+
+  public onDeleteCourseEmit(id: number, title: string): void {
+    this.openDialog(id, title);
+  }
+
+  public openDialog(id: number, title: string): void {
+    const dialogRef: MatDialogRef<object> = this.matDialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+      height: '150px',
+      id: 'modal-component',
+      disableClose: true,
+      data: `Do you confirm the deletion "${title}?"`
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        return this.onDeleteCourse.emit(id);
+      }
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IconDefinition, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { HomePageService } from '../../home-page.service';
+import { HomePageService } from '../../../core/services/home-page.service';
 
 @Component({
   selector: 'app-search',
@@ -14,6 +14,6 @@ export class SearchComponent {
   constructor (private homePageService: HomePageService) {}
 
   public searchCourses(): void {
-    this.homePageService.sendMessageSortByName();
+    this.homePageService.sortListByName();
   }
 }
