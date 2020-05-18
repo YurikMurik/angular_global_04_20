@@ -7,21 +7,11 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./header.component.less']
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() public currentRouteUrl: string;
-  public authentification: boolean = false;
+  public isAuthentificatedUser: boolean = false;
 
   constructor(private authService: AuthService) {}
-
-  public ngOnInit(): void {
-    this.authService.isAuthentificated().subscribe((data: boolean) => {
-      this.authentification = data;
-    });
-
-    this.authService.getRefreshedData().subscribe(
-      data => this.authentification = data
-    );
-  }
 
   public checkingLoginRouter(): boolean {
     return this.currentRouteUrl !== '/login';
@@ -29,9 +19,5 @@ export class HeaderComponent implements OnInit {
 
   public userLogout(): void {
     this.authService.userLogout();
-  }
-
-  public isAuthentificated(): boolean {
-    return this.authentification;
   }
 }

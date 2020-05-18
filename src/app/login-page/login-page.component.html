@@ -4,15 +4,15 @@
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div class="mat-card-content-message" *ngIf="authentification">
+      <div class="mat-card-content-message" *ngIf="isAuthentificated">
         You successfully logged on the site!
         <a [routerLink] = "['']"> go to Homepage </a>
       </div>
-      <form  *ngIf="!authentification" class="example-form">
-        <table class="example-full-width" cellspacing="0">
+      <form  *ngIf="!isAuthentificated">
+        <table cellspacing="0">
           <tr>
             <td>
-              <mat-form-field class="example-full-width">
+              <mat-form-field>
                 <input 
                     matInput 
                     placeholder="Username"
@@ -24,7 +24,7 @@
             </td>
           </tr>
           <tr>
-          <td><mat-form-field class="example-full-width">
+          <td><mat-form-field>
             <input
                 matInput
                 placeholder="Password"
@@ -39,7 +39,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button
-        *ngIf="!authentification" 
+        *ngIf="!isAuthentificated" 
         mat-raised-button (click)="loginUser()"
         color="primary"
       >
