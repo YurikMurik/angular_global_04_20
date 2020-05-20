@@ -26,4 +26,14 @@ export class HomePageService {
     const newArr: CourseItemInfo[] = this.coursesList.filter(item => item.id !== id);
     return of(this.coursesList = newArr);
   }
+
+  public createCourse(object: CourseItemInfo[]): void {
+    console.log(object);
+  }
+
+  public updateItem(id: number): CourseItemInfo[] {
+    const courseList: CourseItemInfo[] = fakeVideoList;
+    const foundCourse: CourseItemInfo = courseList.find(course => course.id === id);
+    return [foundCourse];
+  }
 }

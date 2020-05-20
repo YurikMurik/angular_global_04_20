@@ -9,9 +9,11 @@ import { HomePageModule } from '../home-page/home-page.module';
 import { SharedModule } from '../shared/shared.module';
 import { CoursePageModule } from '../course-page/course-page.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { CustomMaterialModule } from '../core/modules/material.module';
+import { AddCoursePageModule } from '../add-course-page/add-course-page.module';
+import { NotFoundPageModule } from '../not-found-page/not-found-page.module';
+import { EditCoursePageModule } from '../edit-course-page/edit-course-page.module';
+import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     CoursePageModule,
     LoginPageModule,
     HomePageModule,
+    AddCoursePageModule,
+    NotFoundPageModule,
+    EditCoursePageModule,
+    BreadcrumbModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatDialogModule
+    CustomMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

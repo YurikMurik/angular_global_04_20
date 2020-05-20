@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.service';
 import { HomePageComponent } from '../home-page/home-page.component';
-import { CoursePageComponent } from '../course-page/course-page.component';
 import { LoginPageComponent } from '../login-page/login-page.component';
+import { AddCoursePageComponent } from '../add-course-page/add-course-page.component';
+import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
+import { EditCoursePageComponent } from '../edit-course-page/edit-course-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
-  { path: 'courses/:courseId', component: CoursePageComponent },
-  { path: 'login', component: LoginPageComponent }
+  { path: '', redirectTo: '/courses', pathMatch: 'full' },
+  { path: 'courses', component: HomePageComponent, canActivate: [AuthGuard] },
+  { path: 'courses/new', component: AddCoursePageComponent, canActivate: [AuthGuard] },
+  { path: 'courses/:courseId', component: EditCoursePageComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginPageComponent, resolve: [AuthGuard] },
+  { path: '**', component: NotFoundPageComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
