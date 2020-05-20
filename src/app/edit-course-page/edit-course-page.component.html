@@ -1,14 +1,14 @@
-<div class="container">
+<div *ngIf="editableCourse" class="container">
   <p>
-    Title: {{editableCourseData.title}}
+    Title: {{editableCourse.title}}
   </p>
   <p>
-    Description: {{editableCourseData.description}}
+    Description: {{editableCourse.description}}
   </p>
   <p>
-    Duration: {{editableCourseData.durationTime}}
+    Duration: {{editableCourse.durationTime}}
   </p>
   <p>
-    Created at: {{editableCourseData.createdAtDate}}
+    Created at: {{editableCourse.createdAtDate}}
   </p>
 </div>

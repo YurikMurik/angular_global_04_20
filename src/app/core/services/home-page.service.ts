@@ -1,39 +1,52 @@
 import { Injectable } from '@angular/core';
-import { fakeVideoList } from '../mocks/mocked-courses';
 import { CourseItemInfo } from '../models';
-import { OrderByTitleNamePipe } from '../pipes/order-by-title-name.pipe';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { switchMap } from 'rxjs/operators';
 
+const BASE_URL: string = 'http://localhost:3000/courses';
 @Injectable({
   providedIn: 'root'
 })
-export class HomePageService {
-  private coursesList: CourseItemInfo[];
 
-  constructor(private orderByTitleNamePipe: OrderByTitleNamePipe) {
-    this.coursesList = fakeVideoList;
-  }
+export class HomePageService {
+
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   public getCourses(): Observable<CourseItemInfo[]> {
-    return of(this.coursesList);
+    return this.http.get<CourseItemInfo[]>(BASE_URL);
   }
 
-  public sortListByName(): CourseItemInfo[] {
-    return this.orderByTitleNamePipe.transform(this.coursesList);
+  public searchCourse(text: string): Observable<CourseItemInfo[]> {
+    const params: HttpParams = new HttpParams().set('q', text);
+    return this.http.get<CourseItemInfo[]>(`${BASE_URL}`, {
+      params,
+      responseType: 'json'
+    });
   }
 
-  public deleteCourseById(id: number): Observable<CourseItemInfo[]>  {
-    const newArr: CourseItemInfo[] = this.coursesList.filter(item => item.id !== id);
-    return of(this.coursesList = newArr);
+  public deleteCourseById(id: string): Observable<CourseItemInfo[]>  {
+    return this.http.delete<CourseItemInfo[]>(`${BASE_URL}/${id}`)
+      .pipe(
+        switchMap(() => this.getCourses())
+      );
   }
 
-  public createCourse(object: CourseItemInfo[]): void {
-    console.log(object);
+  public createCourse(body: CourseItemInfo): Observable<Object> {
+    const randomId: string = Math.random().toString(36).substr(2, 9);
+    body.id = randomId;
+
+    return this.http.post<CourseItemInfo>(BASE_URL, body)
+      .pipe(
+        switchMap(() => {
+          return this.getCourses();
+        })
+    );
   }
 
-  public updateItem(id: number): CourseItemInfo[] {
-    const courseList: CourseItemInfo[] = fakeVideoList;
-    const foundCourse: CourseItemInfo = courseList.find(course => course.id === id);
-    return [foundCourse];
+  public updateItem(id: string): Observable<CourseItemInfo> {
+      return this.http.get<CourseItemInfo>(`${BASE_URL}/${id}`);
   }
 }

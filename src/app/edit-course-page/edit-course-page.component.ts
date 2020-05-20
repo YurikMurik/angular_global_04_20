@@ -9,9 +9,7 @@ import { CourseItemInfo } from '../core/models';
   styleUrls: ['./edit-course-page.component.less']
 })
 export class EditCoursePageComponent implements OnInit {
-  public name: string;
-  public editableCourse: CourseItemInfo[];
-  public editableCourseData: CourseItemInfo;
+  public editableCourse: CourseItemInfo;
 
   constructor(
     private homePageService: HomePageService,
@@ -19,13 +17,14 @@ export class EditCoursePageComponent implements OnInit {
 
   public ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const courseId: number = +params.get('courseId');
+      const courseId: string = params.get('courseId');
       this.editCourseById(courseId);
     });
   }
 
-  public editCourseById(id: number): void {
-    this.editableCourse = this.homePageService.updateItem(id);
-    this.editableCourseData = this.editableCourse[0];
+  public editCourseById(id: string): void {
+    this.homePageService.updateItem(id).subscribe(data => {
+      return this.editableCourse = data;
+    });
   }
 }

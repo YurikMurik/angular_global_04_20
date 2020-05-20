@@ -14,6 +14,7 @@ import { AddCoursePageModule } from '../add-course-page/add-course-page.module';
 import { NotFoundPageModule } from '../not-found-page/not-found-page.module';
 import { EditCoursePageModule } from '../edit-course-page/edit-course-page.module';
 import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
     EditCoursePageModule,
     BreadcrumbModule,
     BrowserAnimationsModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

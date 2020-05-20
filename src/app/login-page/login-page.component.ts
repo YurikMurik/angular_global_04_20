@@ -18,8 +18,9 @@ export class LoginPageComponent {
     private router: Router
   ) { }
 
-  public loginUser(): void {
-    this.authService.userLogin(this.username, this.password);
-    this.router.navigate(['courses']);
+  public userLogin(): void {
+    this.authService.userLogin(this.username, this.password).subscribe(
+      data => this.router.navigate(['courses'])
+    );
   }
 }

@@ -1,10 +1,10 @@
 
 export interface CourseItemInfo {
-    id?: number;
+    id?: string;
     title: string;
     createdAtDate: Date;
     durationTime: number;
     description: string;
     topRated?: boolean;
-    authors?: string;
+    authors?: string[];
 }

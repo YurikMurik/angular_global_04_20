@@ -13,6 +13,7 @@ import { ChangeBorderColorDirective } from '../core/directives/change-border-col
 import { OrderByDateCreationPipe } from '../core/pipes/order-by-date-creation.pipe';
 import { OrderByTitleNamePipe } from '../core/pipes/order-by-title-name.pipe';
 import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     FontAwesomeModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    NgxPaginationModule
   ],
   providers: [
     DatePipe,

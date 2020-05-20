@@ -1,0 +1,83 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "title": "Video about Denmark",
+      "createdAtDate": "1/1/2019",
+      "durationTime": 120,
+      "topRated": true,
+      "authors": [],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla."
+    },
+    {
+      "id": "2",
+      "title": "Video about Canada",
+      "createdAtDate": "5/20/2020",
+      "durationTime": 180,
+      "authors": [
+        "me",
+        "me"
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla."
+    },
+    {
+      "id": "3",
+      "title": "Video about Brazil",
+      "createdAtDate": "12/14/2021",
+      "durationTime": 180,
+      "topRated": false,
+      "authors": [
+        "me",
+        "me",
+        "id3"
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla."
+    },
+    {
+      "id": "4",
+      "title": "Video about Australia",
+      "createdAtDate": "10/20/2020",
+      "durationTime": 132,
+      "topRated": false,
+      "authors": [
+        "me",
+        "me",
+        "id4"
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla."
+    },
+    {
+      "id": "6",
+      "title": "Video about Sweden",
+      "createdAtDate": "1/1/2021",
+      "durationTime": 119,
+      "topRated": true,
+      "authors": [
+        "me",
+        "me",
+        "id6"
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla."
+    },
+    {
+      "title": "New fantastic course !",
+      "createdAtDate": "2020-05-22T21:00:00.000Z",
+      "durationTime": "123",
+      "description": "Asd asd description ",
+      "authors": [
+        "me"
+      ],
+      "id": "951abhdfm"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Vasya",
+      "lastName": "Pupkin",
+      "login": "vasya",
+      "password": "12345",
+      "token": "randomtoken_1234556789$"
+    }
+  ]
+}
