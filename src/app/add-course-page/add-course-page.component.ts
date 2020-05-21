@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomePageService } from '../core/services/home-page.service';
 import { CourseItemInfo } from '../core/models';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 const coursesURL: string = '/courses';
 @Component({
@@ -10,7 +11,6 @@ const coursesURL: string = '/courses';
   styleUrls: ['./add-course-page.component.less']
 })
 export class AddCoursePageComponent {
-
   public title: string;
   public description: string;
   public duration: number;
@@ -19,7 +19,7 @@ export class AddCoursePageComponent {
 
   constructor (
     private router: Router,
-    private homePageService: HomePageService
+    private homePageService: HomePageService,
   ) { }
 
   public cancelClick(): void {
@@ -27,15 +27,23 @@ export class AddCoursePageComponent {
   }
 
   public addNewCourse(): void {
-    const sentDataCourse: CourseItemInfo[] = [{
+    const authorsArr: string[] = this.authors.split(', ');
+    const sentDataCourse: CourseItemInfo = {
       title: this.title,
       createdAtDate: this.datapicker,
       durationTime: this.duration,
       description: this.description,
-      authors: this.authors
-    }];
+      authors: authorsArr
+    };
 
-    this.homePageService.createCourse(sentDataCourse);
-    this.router.navigate([coursesURL]);
+    this.homePageService.createCourse(sentDataCourse).subscribe (
+      data => {
+        this.router.navigate([coursesURL]);
+      }
+    );
+  }
+
+  public addEvent(event: MatDatepickerInputEvent<Date>): void {
+    this.datapicker = event.value;
   }
 }

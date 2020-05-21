@@ -1,13 +1,17 @@
 <ul class="course-list">
     <app-course-item 
         (onDeleteCourse)="onDeleteCourse($event)"
-        *ngFor="let item of courses | orderByDateCreation"
+        *ngFor="let item of courses | orderByDateCreation | paginate: { itemsPerPage: 5, currentPage: coursesPage }"
         [item]="item"
     >
     </app-course-item>
 
-    <div class="course-list-item-message">
-        <a *ngIf="courses && courses.length" href="#"> LOAD MORE </a>
-        <p *ngIf="!courses || !courses.length"> NO DATA. FEEL FREE TO ADD NEW COURSE </p>
+    <pagination-controls (pageChange)="coursesPage = $event"></pagination-controls>
+
+    <div 
+        class="course-list-item-message"
+        *ngIf="!courses || !courses.length"
+    >
+        <p> NO DATA. FEEL FREE TO ADD NEW COURSE </p>
     </div>
 </ul>

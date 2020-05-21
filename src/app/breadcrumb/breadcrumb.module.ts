@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BreadcrumbComponent } from './breadcrumb.component';
-import { CreateBreadcrumbStringPipe } from '../core/pipes/createBreadcrumbString.pipe';
+import { CreateBreadcrumbStringPipe } from '../core/pipes/create-breadcrumb-string.pipe';
 
 @NgModule({
   declarations: [

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { IconDefinition, faEdit, faTrash, faClock, faCalendar, faStar } from '@fortawesome/free-solid-svg-icons';
 import { CourseItemInfo } from 'src/app/core/models';
 import { Router } from '@angular/router';
@@ -11,10 +11,12 @@ import { HomePageService } from 'src/app/core/services/home-page.service';
   templateUrl: './course-item.component.html',
   styleUrls: ['./course-item.component.less']
 })
-export class CourseItemComponent {
+export class CourseItemComponent implements OnInit {
   @Input() public item: CourseItemInfo;
   @Input() public routerLink: Router;
-  @Output() public onDeleteCourse: EventEmitter<number> = new EventEmitter();
+  @Output() public onDeleteCourse: EventEmitter<string> = new EventEmitter();
+
+  public courseAuthors: string;
 
   public editButtonIcon: IconDefinition = faEdit;
   public trashButtonIcon: IconDefinition = faTrash;
@@ -28,16 +30,20 @@ export class CourseItemComponent {
     public router: Router
   ) { }
 
-  public onDeleteCourseEmit(id: number, title: string): void {
+  public ngOnInit(): void {
+    this.courseAuthors = Array.from(this.item.authors).join(', ');
+  }
+
+  public onDeleteCourseEmit(id: string, title: string): void {
     this.openDialog(id, title);
   }
 
-  public isEditedCourse(id: number): void {
+  public isEditedCourse(id: string): void {
     this.homePageService.updateItem(id);
     this.router.navigate(['/courses', id]);
   }
 
-  public openDialog(id: number, title: string): void {
+  public openDialog(id: string, title: string): void {
     const dialogRef: MatDialogRef<object> = this.matDialog.open(ConfirmationDialogComponent, {
       width: '400px',
       height: '150px',

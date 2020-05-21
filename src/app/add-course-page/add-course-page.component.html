@@ -37,11 +37,13 @@
           </mat-form-field>
           <mat-form-field class="add-course-form-date">
             <mat-label>Date: </mat-label>
-            <input matInput [matDatepicker]="datapicker">
-            <mat-datepicker-toggle matSuffix [for]="datapicker">
-              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-            </mat-datepicker-toggle>
-            <mat-datepicker #datapicker></mat-datepicker>
+            <input 
+              matInput
+              [matDatepicker]="picker"
+              (dateInput)="addEvent($event)"
+            >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field class="add-course-form-authors">
             <mat-label>Authors: </mat-label>

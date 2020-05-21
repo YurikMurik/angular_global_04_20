@@ -20,7 +20,7 @@ export class HeaderLoginComponent implements OnInit {
   public ngOnInit(): void {
     this.isAuthentificated = this.authService.isAuthentificated();
     if (this.isAuthentificated) {
-      this.userInfo = this.authService.getUserInfo();
+      this.authService.getUserInfo().subscribe(data => this.userInfo = data[0]);
     }
   }
 
