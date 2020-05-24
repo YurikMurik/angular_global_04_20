@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { UserInfo } from '../models';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap, switchMap } from 'rxjs/operators';
+import { LoadingBlockService } from './loading-block.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,15 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private loadingBlockService: LoadingBlockService
   ) { }
 
   public getUserInfo(): Observable<UserInfo> {
-    return this.http.get<UserInfo>(this.userUrl);
+    this.loadingBlockService.updateLoadingBlockState('start');
+    return this.http.get<UserInfo>(this.userUrl)
+      .pipe(
+        tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
+      );
   }
 
   public userLogin(sentLogin: string, sentPassword: string): Observable<boolean> {
@@ -29,22 +35,29 @@ export class AuthService {
             lastName,
             token
           } = data[0];
+          this.loadingBlockService.updateLoadingBlockState('start');
           if ((sentLogin === login) && (sentPassword === password) && token) {
             localStorage.setItem('userData', JSON.stringify({ firstName, lastName, token }));
           }
-          return this.isAuthentificated();
-        })
+        }),
+        switchMap(() => {
+          return this.isAuthentificated()
+            .pipe(
+              map(auth => auth)
+            );
+        }),
+        tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
       );
   }
 
-  public userLogout(): boolean {
+  public userLogout(): Observable<boolean> {
     localStorage.removeItem('userData');
     return this.isAuthentificated();
   }
 
-  public isAuthentificated(): boolean {
+  public isAuthentificated(): Observable<boolean> {
     const userDataFromLS: UserInfo = JSON.parse(localStorage.getItem('userData'));
-    return userDataFromLS && !!userDataFromLS.token;
+    return of(userDataFromLS && !!userDataFromLS.token);
   }
 
   public getToken(): string {

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { CourseItemInfo } from '../models';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
+import { LoadingBlockService } from './loading-block.service';
 
 const BASE_URL: string = 'http://localhost:3000/courses';
 @Injectable({
@@ -13,21 +14,31 @@ export class HomePageService {
 
   constructor(
     private http: HttpClient,
+    private loadingBlockService: LoadingBlockService
   ) { }
 
   public getCourses(): Observable<CourseItemInfo[]> {
-    return this.http.get<CourseItemInfo[]>(BASE_URL);
+    this.loadingBlockService.updateLoadingBlockState('start');
+    return this.http.get<CourseItemInfo[]>(BASE_URL)
+    .pipe(
+      tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
+    );
   }
 
   public searchCourse(text: string): Observable<CourseItemInfo[]> {
     const params: HttpParams = new HttpParams().set('q', text);
+    this.loadingBlockService.updateLoadingBlockState('start');
     return this.http.get<CourseItemInfo[]>(`${BASE_URL}`, {
       params,
       responseType: 'json'
-    });
+    })
+    .pipe(
+      tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
+    );
   }
 
   public deleteCourseById(id: string): Observable<CourseItemInfo[]>  {
+    this.loadingBlockService.updateLoadingBlockState('start');
     return this.http.delete<CourseItemInfo[]>(`${BASE_URL}/${id}`)
       .pipe(
         switchMap(() => this.getCourses())
@@ -40,13 +51,16 @@ export class HomePageService {
 
     return this.http.post<CourseItemInfo>(BASE_URL, body)
       .pipe(
-        switchMap(() => {
-          return this.getCourses();
-        })
+        switchMap(() => this.getCourses()),
+        tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
     );
   }
 
   public updateItem(id: string): Observable<CourseItemInfo> {
-      return this.http.get<CourseItemInfo>(`${BASE_URL}/${id}`);
+    this.loadingBlockService.updateLoadingBlockState('start');
+    return this.http.get<CourseItemInfo>(`${BASE_URL}/${id}`)
+      .pipe(
+        tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
+      );
   }
 }
