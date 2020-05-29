@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -9,13 +9,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 
 export class HeaderComponent {
   @Input() public currentRouteUrl: string;
-  public isAuthentificatedUser: boolean = false;
-
   constructor(private authService: AuthService) {}
-
-  public checkingLoginRouter(): boolean {
-    return this.currentRouteUrl !== '/login';
-  }
 
   public userLogout(): void {
     this.authService.userLogout();

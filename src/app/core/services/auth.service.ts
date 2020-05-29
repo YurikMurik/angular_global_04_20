@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
-import { UserInfo } from '../models';
-import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map, tap, switchMap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { UserInfo } from '../models';
 import { LoadingBlockService } from './loading-block.service';
 
+const BASE_URL: string = 'http://localhost:3000/users';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
-  private userUrl: string = 'http://localhost:3000/users';
 
   constructor(
     private http: HttpClient,
@@ -17,15 +18,15 @@ export class AuthService {
   ) { }
 
   public getUserInfo(): Observable<UserInfo> {
-    this.loadingBlockService.updateLoadingBlockState('start');
-    return this.http.get<UserInfo>(this.userUrl)
+    this.loadingBlockService.updateLoadingBlockState(true);
+    return this.http.get<UserInfo>(BASE_URL)
       .pipe(
-        tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
+        tap(() => this.loadingBlockService.updateLoadingBlockState(false))
       );
   }
 
-  public userLogin(sentLogin: string, sentPassword: string): Observable<boolean> {
-    return this.http.get<UserInfo>(this.userUrl, { headers: { SkipInterceptor: 'true' }})
+  public userLogin(sentLogin: string, sentPassword: string): Observable<void> {
+    return this.http.get<UserInfo>(BASE_URL, { headers: { SkipInterceptor: 'true' }})
       .pipe(
         map(data => {
           const {
@@ -35,18 +36,12 @@ export class AuthService {
             lastName,
             token
           } = data[0];
-          this.loadingBlockService.updateLoadingBlockState('start');
+          this.loadingBlockService.updateLoadingBlockState(true);
           if ((sentLogin === login) && (sentPassword === password) && token) {
             localStorage.setItem('userData', JSON.stringify({ firstName, lastName, token }));
           }
         }),
-        switchMap(() => {
-          return this.isAuthentificated()
-            .pipe(
-              map(auth => auth)
-            );
-        }),
-        tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
+        tap(() => this.loadingBlockService.updateLoadingBlockState(false))
       );
   }
 

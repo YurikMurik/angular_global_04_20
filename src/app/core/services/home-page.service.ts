@@ -18,27 +18,27 @@ export class HomePageService {
   ) { }
 
   public getCourses(): Observable<CourseItemInfo[]> {
-    this.loadingBlockService.updateLoadingBlockState('start');
+    this.loadingBlockService.updateLoadingBlockState(true);
     return this.http.get<CourseItemInfo[]>(BASE_URL)
     .pipe(
-      tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
+      tap(() => this.loadingBlockService.updateLoadingBlockState(false))
     );
   }
 
   public searchCourse(text: string): Observable<CourseItemInfo[]> {
     const params: HttpParams = new HttpParams().set('q', text);
-    this.loadingBlockService.updateLoadingBlockState('start');
+    this.loadingBlockService.updateLoadingBlockState(true);
     return this.http.get<CourseItemInfo[]>(`${BASE_URL}`, {
       params,
       responseType: 'json'
     })
     .pipe(
-      tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
+      tap(() => this.loadingBlockService.updateLoadingBlockState(false))
     );
   }
 
   public deleteCourseById(id: string): Observable<CourseItemInfo[]>  {
-    this.loadingBlockService.updateLoadingBlockState('start');
+    this.loadingBlockService.updateLoadingBlockState(true);
     return this.http.delete<CourseItemInfo[]>(`${BASE_URL}/${id}`)
       .pipe(
         switchMap(() => this.getCourses())
@@ -52,15 +52,15 @@ export class HomePageService {
     return this.http.post<CourseItemInfo>(BASE_URL, body)
       .pipe(
         switchMap(() => this.getCourses()),
-        tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
+        tap(() => this.loadingBlockService.updateLoadingBlockState(false))
     );
   }
 
   public updateItem(id: string): Observable<CourseItemInfo> {
-    this.loadingBlockService.updateLoadingBlockState('start');
+    this.loadingBlockService.updateLoadingBlockState(true);
     return this.http.get<CourseItemInfo>(`${BASE_URL}/${id}`)
       .pipe(
-        tap(() => this.loadingBlockService.updateLoadingBlockState('finish'))
+        tap(() => this.loadingBlockService.updateLoadingBlockState(false))
       );
   }
 }

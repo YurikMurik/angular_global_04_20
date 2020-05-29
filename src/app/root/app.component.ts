@@ -1,38 +1,21 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { LoadingBlockService } from '../core/services/loading-block.service';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   public route: string;
-  public loadingState: boolean = false;
 
   constructor(
     public location: Location,
     private router: Router,
-    public loadingBlockService: LoadingBlockService,
-    private cdref: ChangeDetectorRef
   ) {
     router.events.subscribe(val => {
-      if (location.path() !== '') {
-        this.route = location.path();
-      } else {
-        this.route = '/';
-      }
+      this.route = location.path() !== '' ? location.path() : '/';
     });
-  }
-
-  public ngOnInit(): void {
-    this.loadingBlockService.stateLoadingBlockNotify.subscribe(
-      state => {
-        this.loadingState = state;
-        this.cdref.detectChanges();
-      }
-    );
   }
 }

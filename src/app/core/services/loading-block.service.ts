@@ -1,21 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class LoadingBlockService {
-  private notificationSource: Subject<boolean> = new Subject();
-  public initialState: boolean = true;
+  private notificationSource: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public stateLoadingBlockNotify: Observable<boolean> = this.notificationSource.asObservable();
 
-  public updateLoadingBlockState(newState: string): void {
-    this.notificationSource.next(this.initialState);
-    if (newState === 'start') {
-      this.notificationSource.next(true);
-    } else {
-      this.notificationSource.next(false);
-    }
+  public updateLoadingBlockState(newState: boolean): void {
+    this.notificationSource.next(newState);
   }
 }
