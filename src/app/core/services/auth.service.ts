@@ -1,25 +1,32 @@
-import { Injectable } from '@angular/core';
-import { UserInfo } from '../models';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { UserInfo } from '../models';
+import { LoadingBlockService } from './loading-block.service';
 
+const BASE_URL: string = 'http://localhost:3000/users';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
-  private userUrl: string = 'http://localhost:3000/users';
 
   constructor(
     private http: HttpClient,
+    private loadingBlockService: LoadingBlockService
   ) { }
 
   public getUserInfo(): Observable<UserInfo> {
-    return this.http.get<UserInfo>(this.userUrl);
+    this.loadingBlockService.updateLoadingBlockState(true);
+    return this.http.get<UserInfo>(BASE_URL)
+      .pipe(
+        tap(() => this.loadingBlockService.updateLoadingBlockState(false))
+      );
   }
 
-  public userLogin(sentLogin: string, sentPassword: string): Observable<boolean> {
-    return this.http.get<UserInfo>(this.userUrl, { headers: { SkipInterceptor: 'true' }})
+  public userLogin(sentLogin: string, sentPassword: string): Observable<void> {
+    return this.http.get<UserInfo>(BASE_URL, { headers: { SkipInterceptor: 'true' }})
       .pipe(
         map(data => {
           const {
@@ -29,22 +36,23 @@ export class AuthService {
             lastName,
             token
           } = data[0];
+          this.loadingBlockService.updateLoadingBlockState(true);
           if ((sentLogin === login) && (sentPassword === password) && token) {
             localStorage.setItem('userData', JSON.stringify({ firstName, lastName, token }));
           }
-          return this.isAuthentificated();
-        })
+        }),
+        tap(() => this.loadingBlockService.updateLoadingBlockState(false))
       );
   }
 
-  public userLogout(): boolean {
+  public userLogout(): Observable<boolean> {
     localStorage.removeItem('userData');
     return this.isAuthentificated();
   }
 
-  public isAuthentificated(): boolean {
+  public isAuthentificated(): Observable<boolean> {
     const userDataFromLS: UserInfo = JSON.parse(localStorage.getItem('userData'));
-    return userDataFromLS && !!userDataFromLS.token;
+    return of(userDataFromLS && !!userDataFromLS.token);
   }
 
   public getToken(): string {

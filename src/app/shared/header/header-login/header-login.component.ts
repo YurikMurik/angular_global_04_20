@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IconDefinition, faUser, faArrowRight, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserInfo } from 'src/app/core/models/user-info.interface';
@@ -18,7 +18,9 @@ export class HeaderLoginComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   public ngOnInit(): void {
-    this.isAuthentificated = this.authService.isAuthentificated();
+    this.authService.isAuthentificated().subscribe(data => {
+      this.isAuthentificated = data;
+    });
     if (this.isAuthentificated) {
       this.authService.getUserInfo().subscribe(data => this.userInfo = data[0]);
     }

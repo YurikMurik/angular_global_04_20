@@ -1,10 +1,10 @@
 <div class="toolbox-search">
     <fa-icon class="toolbox-search-icon" [icon]="faSearchIcon"></fa-icon>
     <input 
-        [(ngModel)]="searchResult"
+        [(ngModel)]="searchInput"
         [ngModelOptions]="{standalone: true}"
+        (ngModelChange)="onTextChange($event)"
         type="text"
         placeholder="Text to search"
     >
-    <button (click)="searchCourses()"> Search </button>
 </div>

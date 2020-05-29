@@ -1,10 +1,11 @@
 <div class="course-page container">
     <div class="course-page-toolbox">
-        <app-toolbox></app-toolbox>
+        <app-search></app-search>
+        <app-add-course></app-add-course>
     </div>
     <div class="course-page-list">
         <app-course-list 
-            [courses]='courses'
+            [courses]='courses | async'
         ></app-course-list>
     </div>
 </div>

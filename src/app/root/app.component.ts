@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,12 @@ import { Location } from '@angular/common';
 export class AppComponent {
   public route: string;
 
-  constructor(location: Location, router: Router) {
+  constructor(
+    public location: Location,
+    private router: Router,
+  ) {
     router.events.subscribe(val => {
-      if (location.path() !== '') {
-        this.route = location.path();
-      } else {
-        this.route = '/';
-      }
+      this.route = location.path() !== '' ? location.path() : '/';
     });
   }
 }
