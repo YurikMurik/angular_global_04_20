@@ -1,77 +1,125 @@
-<div class="login-wrapper">  
-    <mat-card class="login-card">
-      <mat-card-header>
-        <mat-card-title>New course</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="add-course-form">
-          <mat-form-field class="add-course-form-title">
-            <mat-label>Title</mat-label>
-            <input 
-                matInput 
-                placeholder="Text input"
-                [(ngModel)]="title"
-                name="username"
-                required
-            >
-          </mat-form-field>
-          <mat-form-field class="add-course-form-description">
-            <mat-label>Description</mat-label>
-              <textarea
-                  matInput
-                  placeholder="Description"
-                  [(ngModel)]="description"
-                  name="description"
-                  required
-              ></textarea>
-          </mat-form-field>
-          <mat-form-field class="add-course-form-date">
-            <mat-label>Duration: </mat-label>
-              <input
-                  matInput
-                  placeholder="minutes"
-                  [(ngModel)]="duration"
-                  name="duration"
-                  required
-              >
-          </mat-form-field>
-          <mat-form-field class="add-course-form-date">
-            <mat-label>Date: </mat-label>
-            <input 
-              matInput
-              [matDatepicker]="picker"
-              (dateInput)="addEvent($event)"
-            >
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          <mat-form-field class="add-course-form-authors">
-            <mat-label>Authors: </mat-label>
-            <input
-              matInput
-              placeholder="Start typing"
-              [(ngModel)]="authors"
-              name="authors"
-              required
-            >
-          </mat-form-field>
+<div class="add-course-wrapper">  
+  <div class="add-course-card">
+    <div class="add-course-card-header">
+      <p>{{pageTitle}}</p>
+    </div>
+      <form 
+        [formGroup]="addNewCourseForm" 
+        class="add-course-form"
+        (ngSubmit)="addNewCourse()"
+        novalidate
+      >
+        <label class="add-course-form-label">
+          <p> Title </p>
+          <input
+            placeholder="Text input"
+            formControlName="title"
+            [class.error-input-validation]="formControls.title.errors 
+              && formControls.title.touched"
+          >
+        </label>
+        <div
+          *ngIf="formControls.title.touched && formControls.title.invalid"
+          [class.error-message]="formControls.title.errors"
+        >
+          <div *ngIf="formControls.title.errors.maxlength">
+            Title should be not more 50 character.
+          </div>
+          <div *ngIf="formControls.title.errors.required">
+            Required
+          </div>
         </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <button
-          mat-raised-button
-          class="add-course-form-button-cancel"
-          (click)="cancelClick()"
+
+        <label class="add-course-form-label">
+          <p> Description </p>
+          <textarea
+            placeholder="Description"
+            formControlName="description"
+            [class.error-input-validation]="formControls.description.errors 
+              && formControls.description.touched"
+          ></textarea>
+        </label>
+        <div
+          *ngIf="formControls.description.touched && formControls.description.invalid"
+          [class.error-message]="formControls.description.errors"
         >
-          Cancel
-        </button>
-        <button
-          mat-raised-button
-          class="add-course-form-button-save"
-          (click)="addNewCourse()"
+          <div *ngIf="formControls.description.errors.maxlength">
+            Title should be not more 500 character.
+          </div>
+          <div *ngIf="formControls.description.errors.required">
+            Required
+          </div>
+        </div>
+
+        <label class="add-course-form-label-time">
+          <p> Date: </p>
+            <app-created-at-date-field
+              formControlName="createdAtDate"
+            ></app-created-at-date-field>
+        </label>
+        <div
+          *ngIf="formControls.createdAtDate.touched && formControls.createdAtDate.invalid"
+          [class.error-message]="formControls.createdAtDate.errors"
         >
-          Save
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+          <div *ngIf="formControls.createdAtDate.errors.wrongFormatError">
+            Date format should be dd/MM/yyyy
+          </div>
+          <div *ngIf="formControls.createdAtDate.errors.required">
+            Required
+          </div>
+        </div>
+
+        <label class="add-course-form-label-time-duration">
+          <p> Duration: </p>
+          <app-duration-field
+            formControlName="durationTime"
+          ></app-duration-field>
+        </label>
+        <div
+          *ngIf="formControls.durationTime.touched && formControls.durationTime.invalid"
+          [class.error-message]="formControls.durationTime.errors"
+        >
+          <div *ngIf="formControls.durationTime.errors.required">
+            Required
+          </div>
+          <div *ngIf="formControls.durationTime.errors.onlyNumberError">
+            There are should be digits only!
+          </div>
+        </div>
+
+        <label class="add-course-form-label">
+          <p> Authors: </p>
+          <app-authors-input
+            [formControl]="addNewCourseForm.get('authors')"
+          ></app-authors-input>
+        </label>
+        <div
+          *ngIf="formControls.authors.touched && formControls.authors.invalid"
+          [class.error-message]="formControls.authors.errors"
+        >
+          <div *ngIf="formControls.authors.errors.requiredError">
+            There is should be one author at least!
+          </div>
+        </div>
+        <div class="add-course-form-actions">
+          <button
+            mat-raised-button
+            class="add-course-form-button-cancel"
+            (click)="cancelClick()"
+          >
+            Cancel
+          </button>
+    
+          <button
+            mat-raised-button
+            class="add-course-form-button-save"
+            type="submit"
+            [disabled]="addNewCourseForm.invalid"
+            [class.add-course-form-button-save--disabled]="addNewCourseForm.invalid"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>   
+</div>

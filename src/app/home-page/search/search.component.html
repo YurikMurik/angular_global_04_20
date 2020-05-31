@@ -1,9 +1,7 @@
 <div class="toolbox-search">
     <fa-icon class="toolbox-search-icon" [icon]="faSearchIcon"></fa-icon>
-    <input 
-        [(ngModel)]="searchInput"
-        [ngModelOptions]="{standalone: true}"
-        (ngModelChange)="onTextChange($event)"
+    <input
+        [formControl]="searchInputFormControl"
         type="text"
         placeholder="Text to search"
     >

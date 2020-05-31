@@ -39,7 +39,6 @@ export class CourseItemComponent implements OnInit {
   }
 
   public isEditedCourse(id: string): void {
-    this.homePageService.updateItem(id);
     this.router.navigate(['/courses', id]);
   }
 

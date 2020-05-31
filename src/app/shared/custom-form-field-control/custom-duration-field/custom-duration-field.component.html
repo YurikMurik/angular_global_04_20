@@ -1,0 +1,9 @@
+<input
+  placeholder="minutes"
+  [(ngModel)]="value"
+  (blur)="onTouched()"
+>
+<span
+  class="transformed-duration">
+  {{value | transformMinutesToHours}}
+ </span>

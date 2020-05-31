@@ -23,13 +23,13 @@ import { LoadingBlockComponent } from './loading-block/loading-block.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    LoadingBlockComponent
+    LoadingBlockComponent,
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
     CustomMaterialModule,
-    RouterModule
+    RouterModule,
   ],
   entryComponents: [
     ConfirmationDialogComponent

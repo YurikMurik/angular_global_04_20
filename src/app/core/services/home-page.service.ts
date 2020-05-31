@@ -56,9 +56,17 @@ export class HomePageService {
     );
   }
 
-  public updateItem(id: string): Observable<CourseItemInfo> {
+  public getCourseById(id: string): Observable<CourseItemInfo> {
     this.loadingBlockService.updateLoadingBlockState(true);
     return this.http.get<CourseItemInfo>(`${BASE_URL}/${id}`)
+      .pipe(
+        tap(() => this.loadingBlockService.updateLoadingBlockState(false))
+      );
+  }
+
+  public updateCourse(id: string, data: CourseItemInfo): Observable<CourseItemInfo> {
+    this.loadingBlockService.updateLoadingBlockState(true);
+    return this.http.put<CourseItemInfo>(`${BASE_URL}/${id}`, data)
       .pipe(
         tap(() => this.loadingBlockService.updateLoadingBlockState(false))
       );

@@ -1,38 +1,49 @@
 <div class="login-wrapper">  
-  <mat-card class="login-card">
-    <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="login-page-form">
-        <mat-form-field class="login-page-full-width">
-          <input 
-            matInput 
-            placeholder="Username"
-            [(ngModel)]="username"
-            name="username"
-            required
-          >
-        </mat-form-field>
-        <mat-form-field>
-          <input
-            matInput
-            placeholder="Password"
-            [(ngModel)]="password"
-            type="password"
-            name="password"
-            required
-          >
-        </mat-form-field>
+  <div class="login-card">
+    <div class="login-card-header">
+      <p>Login</p>
+    </div>
+    <div 
+      class="login-card-content"
+      [formGroup]="loginFormGroup"
+    >
+      <div class="login-card-content-input">
+        <input 
+          placeholder="Username"
+          name="username"
+          formControlName="username"
+          [class.error-input]="formControls.username.touched && formControls.username.invalid"
+        >
+        <div
+          *ngIf="formControls.username.touched && formControls.username.invalid"
+          class="error-message"
+        >
+          Required
+        </div>
       </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button
-        mat-raised-button (click)="userLogin()"
-        color="primary"
-      >
-        Login
-      </button>
-    </mat-card-actions>
-  </mat-card>
+      <div class="login-card-content-input">
+        <input
+          placeholder="Password"
+          type="password"
+          name="password"
+          formControlName="password"
+          [class.error-input]="formControls.password.touched && formControls.password.invalid"
+        >
+        <div
+          *ngIf="formControls.password.touched && formControls.password.invalid"
+          class="error-message"
+        >
+          Required
+        </div>
+    </div>
+      <div class="login-card-content-actions">
+        <button
+          mat-raised-button
+          (click)="userLogin()"
+          color="primary"
+        >
+          Login
+        </button>
+      </div>
+  </div>
 </div>
