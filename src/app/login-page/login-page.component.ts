@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
+import { GetFormControls } from '../core/models';
 
 @Component({
   selector: 'app-login-page',
@@ -9,17 +11,27 @@ import { AuthService } from '../core/services/auth.service';
 })
 export class LoginPageComponent {
   public isAuth: boolean = false;
-  public username: string;
-  public password: string;
   public isAuthentificated: boolean;
+  public loginFormGroup: FormGroup;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-  ) { }
+    private fb: FormBuilder
+  ) {
+    this.loginFormGroup = fb.group({
+      'username': ['', [Validators.required]],
+      'password': ['', [Validators.required]],
+    });
+  }
+
+  get formControls(): GetFormControls {
+    return this.loginFormGroup.controls;
+  }
 
   public userLogin(): void {
-    this.authService.userLogin(this.username, this.password).subscribe(
+    const { username, password} = this.loginFormGroup.value;
+    this.authService.userLogin(username, password).subscribe(
       data => this.router.navigate(['courses'])
     );
   }

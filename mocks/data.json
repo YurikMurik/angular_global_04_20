@@ -1,21 +1,11 @@
 {
   "courses": [
     {
-      "id": "1",
-      "title": "Video about Denmark",
-      "createdAtDate": "1/1/2019",
-      "durationTime": 120,
-      "topRated": true,
-      "authors": [],
-      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla."
-    },
-    {
       "id": "2",
       "title": "Video about Canada",
-      "createdAtDate": "5/20/2020",
+      "createdAtDate": "5/2/2020",
       "durationTime": 180,
       "authors": [
-        "me",
         "me"
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla."
@@ -23,11 +13,10 @@
     {
       "id": "3",
       "title": "Video about Brazil",
-      "createdAtDate": "12/14/2021",
+      "createdAtDate": "12/12/2021",
       "durationTime": 180,
       "topRated": false,
       "authors": [
-        "me",
         "me",
         "id3"
       ],
@@ -36,11 +25,10 @@
     {
       "id": "4",
       "title": "Video about Australia",
-      "createdAtDate": "10/20/2020",
+      "createdAtDate": "11/12/2020",
       "durationTime": 132,
       "topRated": false,
       "authors": [
-        "me",
         "me",
         "id4"
       ],
@@ -54,20 +42,39 @@
       "topRated": true,
       "authors": [
         "me",
-        "me",
         "id6"
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla."
     },
     {
       "title": "yurikmurik",
-      "createdAtDate": "2020-05-20T21:00:00.000Z",
-      "durationTime": "12",
+      "createdAtDate": "04/05/2020",
+      "durationTime": 12,
       "description": "123",
       "authors": [
         "df"
       ],
       "id": "l9muna723"
+    },
+    {
+      "title": "Video about Canada",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla. Fuga at magni dignissimos accusamus asperiores enim corrupti nobis dolorem ducimus nostrum dolor, consequuntur, quia laudantium tempore? Neque doloremque eos rerum nulla.",
+      "durationTime": 180,
+      "createdAtDate": "5/2/2020",
+      "authors": [
+        "me"
+      ],
+      "id": "bwqs6nfo6"
+    },
+    {
+      "title": "asa",
+      "description": "a",
+      "durationTime": 12,
+      "createdAtDate": "12/12/1212",
+      "authors": [
+        "Andrew Vorobiev"
+      ],
+      "id": "dfh962g0a"
     }
   ],
   "users": [
@@ -78,6 +85,20 @@
       "login": "vasya",
       "password": "12345",
       "token": "randomtoken_1234556789$"
+    }
+  ],
+  "authors": [
+    {
+      "id": "1",
+      "name": "Andrew Vorobiev"
+    },
+    {
+      "id": "2",
+      "name": "Andrey Morozov"
+    },
+    {
+      "id": "3",
+      "name": "Andy Panda"
     }
   ]
 }
